@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/badge/TypeScript-5.6-3178c6" alt="TypeScript 5.6">
   <img src="https://img.shields.io/badge/React-18-61dafb" alt="React 18">
   <img src="https://img.shields.io/badge/Vite-6-646cff" alt="Vite 6">
-  <img src="https://img.shields.io/badge/made%20by-haai-8b5cf6" alt="Made by haai">
+  <a href="https://www.rugvin.be"><img src="https://img.shields.io/badge/made%20by-rugvin-8b5cf6" alt="Made by rugvin"></a>
 </p>
 
 ## Features

@@ -4,7 +4,7 @@
  */
 
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { Container, Grid, Stack, Title, Text, Button, Group, TextInput, Modal, Tabs, Paper, Box, Menu, UnstyledButton, Tooltip, ActionIcon, Anchor } from '@mantine/core';
+import { Container, Grid, Stack, Title, Text, Button, Group, TextInput, Modal, Tabs, Paper, Box, Menu, UnstyledButton, Tooltip, ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
 import {
@@ -16,7 +16,6 @@ import {
   IconSun,
   IconChevronDown,
   IconFileImport,
-  IconCoffee,
   IconBrandX,
   IconBrandReddit,
   IconCopy,
@@ -40,29 +39,10 @@ import { useShare } from './hooks/useShare';
 import { getSchemeFromUrl, createShareUrl } from './lib/color/urlCodec';
 import { ExportMenu } from './components/export/ExportMenu';
 import type { ExportFormat } from './lib/exporters';
+import { formatExportSuccess } from './lib/exportFeedback';
 
 import type { Profile } from './types/profile';
 import type { ExtractedColor } from './types/color';
-
-/**
- * Returns JSX notification message for export success with a Ko-fi CTA.
- */
-function exportSuccessMessage(filename: string) {
-  return (
-    <>
-      Exported "{filename}".{' '}
-      <Anchor
-        href="https://ko-fi.com/rugvin"
-        target="_blank"
-        rel="noopener noreferrer"
-        size="sm"
-        style={{ color: '#8b5cf6' }}
-      >
-        Enjoying Termicolor? Support on Ko-fi ☕
-      </Anchor>
-    </>
-  );
-}
 
 /**
  * Main application component.
@@ -246,7 +226,7 @@ export function App() {
     downloadScheme(profile.scheme, profile.name);
     notifications.show({
       title: 'Downloaded',
-      message: exportSuccessMessage(`${profile.name}.itermcolors`),
+      message: formatExportSuccess(`${profile.name}.itermcolors`),
       color: 'green',
       autoClose: 6000,
     });
@@ -259,7 +239,7 @@ export function App() {
     downloadScheme(scheme, name, format);
     notifications.show({
       title: 'Downloaded',
-      message: exportSuccessMessage(`${name}.${formatInfo?.extension || 'itermcolors'}`),
+      message: formatExportSuccess(`${name}.${formatInfo?.extension || 'itermcolors'}`),
       color: 'green',
       autoClose: 6000,
     });
@@ -703,42 +683,25 @@ export function App() {
           bottom: 0,
           left: 0,
           right: 0,
+          zIndex: 10,
           textAlign: 'center',
-          padding: '12px 20px',
+          padding: '2px 20px',
           background: 'linear-gradient(to top, var(--bg-deep) 0%, transparent 100%)',
           pointerEvents: 'none',
         }}
       >
-        <Group justify="center" gap="xs" style={{ pointerEvents: 'auto' }}>
-          <Text
-            size="xs"
-            style={{
-              color: 'var(--text-tertiary)',
-              fontFamily: '"Space Grotesk", sans-serif',
-            }}
-          >
-            made by <span style={{ color: '#8b5cf6', fontWeight: 500 }}>haai</span>
-          </Text>
-          <Tooltip label="Support on Ko-fi">
-            <ActionIcon
-              component="a"
-              href="https://ko-fi.com/rugvin"
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="subtle"
-              size="sm"
-              radius="sm"
-              style={{
-                color: 'var(--text-tertiary)',
-                transition: 'color 0.2s ease',
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#8b5cf6'}
-              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-tertiary)'}
-            >
-              <IconCoffee size={14} />
-            </ActionIcon>
-          </Tooltip>
-        </Group>
+        <a
+          href="https://www.rugvin.be"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="creator-credit"
+          aria-label="Made by rugvin"
+        >
+          <span>made by <strong>rugvin</strong></span>
+          <span className="creator-credit__fin" aria-hidden="true">
+            <img src="/fin.svg" alt="" width="118" height="71" />
+          </span>
+        </a>
       </Box>
 
       {/* Save Profile Modal */}
