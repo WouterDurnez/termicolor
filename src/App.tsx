@@ -39,10 +39,13 @@ import { useShare } from './hooks/useShare';
 import { getSchemeFromUrl, createShareUrl } from './lib/color/urlCodec';
 import { ExportMenu } from './components/export/ExportMenu';
 import type { ExportFormat } from './lib/exporters';
-import { formatExportSuccess } from './lib/exportFeedback';
 
 import type { Profile } from './types/profile';
 import type { ExtractedColor } from './types/color';
+
+function formatExportSuccess(filename: string): string {
+  return `Exported "${filename}".`;
+}
 
 /**
  * Main application component.
