@@ -32,6 +32,7 @@
   - Windows Terminal (.json)
   - Hyper (.js)
   - Terminal.app (.terminal) - experimental
+  - Ghostty (.conf)
 - **Import support** - Load existing .itermcolors files
 - **Profile management** - Save and manage your favorite color schemes locally
 

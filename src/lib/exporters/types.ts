@@ -11,7 +11,8 @@ export type ExportFormat =
   | 'kitty'
   | 'windows-terminal'
   | 'hyper'
-  | 'terminal-app';
+  | 'terminal-app'
+  | 'ghostty';
 
 /**
  * Metadata for an export format.
@@ -39,6 +40,7 @@ export const EXPORT_FORMATS: ExportFormatInfo[] = [
   { id: 'windows-terminal', name: 'Windows Terminal', extension: 'json', mimeType: 'application/json' },
   { id: 'hyper', name: 'Hyper', extension: 'js', mimeType: 'text/javascript' },
   { id: 'terminal-app', name: 'Terminal.app', extension: 'terminal', mimeType: 'application/xml', experimental: true },
+  { id: 'ghostty', name: 'Ghostty', extension: 'conf', mimeType: 'text/plain' },
 ];
 
 /**

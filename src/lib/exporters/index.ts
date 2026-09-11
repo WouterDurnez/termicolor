@@ -13,6 +13,7 @@ import { generateKittyConf } from './kitty';
 import { generateWindowsTerminalJson } from './windows-terminal';
 import { generateHyperConfig } from './hyper';
 import { generateTerminalApp } from './terminal-app';
+import { generateGhosttyConf } from './ghostty';
 import { type ExportFormat, getFormatInfo } from './types';
 
 export {
@@ -55,6 +56,8 @@ export function generateExport(
       return generateHyperConfig(scheme, name);
     case 'terminal-app':
       return generateTerminalApp(scheme, name);
+    case 'ghostty':
+      return generateGhosttyConf(scheme, name);
     default: {
       const exhaustiveCheck: never = format;
       throw new Error(`Unsupported export format: ${exhaustiveCheck}`);
